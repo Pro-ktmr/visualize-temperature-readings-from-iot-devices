@@ -121,7 +121,33 @@ const View = (props: {
 
   return (
     <>
-      <div className="houseArea"></div>
+      <div
+        className="houseArea"
+        style={{
+          background:
+            hoveredHour !== ""
+              ? DetermineColorByTemperature(
+                  (props.averageOut[hoveredHour] - minTemperature) /
+                    (maxTemperature - minTemperature)
+                )
+              : "white",
+        }}
+      >
+        <div
+          className="house"
+          style={{
+            fill:
+              hoveredHour !== ""
+                ? DetermineColorByTemperature(
+                    (props.averageIn[hoveredHour] - minTemperature) /
+                      (maxTemperature - minTemperature)
+                  )
+                : "white",
+          }}
+        >
+          <HouseSvg />
+        </div>
+      </div>
       <div className="graphArea">
         {props.hours.map((hour) => (
           <div
@@ -149,11 +175,11 @@ const View = (props: {
               <strong>{hour}:**:**</strong>
               <table>
                 <tr>
-                  <th>In</th>
+                  <th>▲ In</th>
                   <td>{props.averageIn[hour].toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <th>Out</th>
+                  <th>■ Out</th>
                   <td>{props.averageOut[hour].toFixed(2)}</td>
                 </tr>
               </table>
@@ -162,5 +188,84 @@ const View = (props: {
         ))}
       </div>
     </>
+  );
+};
+
+const DetermineColorByTemperature = (percentile: number) => {
+  const r =
+    percentile < 0.5 ? 0 : percentile < 0.75 ? (percentile - 0.5) * 4 : 1;
+  const g =
+    percentile < 0.25
+      ? percentile * 4
+      : percentile < 0.75
+      ? 1
+      : (1 - percentile) * 4;
+  const b =
+    percentile < 0.25 ? 1 : percentile < 0.5 ? (0.5 - percentile) * 4 : 0;
+  return `rgb(${r * 255}, ${g * 255}, ${b * 255})`;
+};
+
+const HouseSvg = () => {
+  return (
+    <svg
+      viewBox="0 0 2162 1852"
+      xmlns="http://www.w3.org/2000/svg"
+      overflow="hidden"
+    >
+      <g transform="translate(-1119 -410)">
+        <path
+          d="M1163 1170 2200 428 3237 1170Z"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+          fill-rule="evenodd"
+        />
+        <rect
+          x="1444"
+          y="1170"
+          width="1512"
+          height="1078"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+        />
+        <rect
+          x="1952"
+          y="1462"
+          width="248"
+          height="248"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+        />
+        <rect
+          x="2200"
+          y="1462"
+          width="248"
+          height="248"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+        />
+        <rect
+          x="2200"
+          y="1707"
+          width="248"
+          height="248"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+        />
+        <rect
+          x="1952"
+          y="1707"
+          width="248"
+          height="248"
+          stroke="#000000"
+          stroke-width="27.5"
+          stroke-miterlimit="8"
+        />
+      </g>
+    </svg>
   );
 };

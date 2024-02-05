@@ -45,7 +45,21 @@ label:has(input[type="file"]):hover {
 
 .houseArea {
   width: 100%;
+  padding: 4rem;
   height: calc(100% - 400px);
+  filter: saturate(50%);
+  fill: red;
+}
+
+.house {
+  width: 100%;
+  height: 100%;
+}
+
+.house svg {
+  max-height: 100%;
+  min-height: 100%;
+  margin: auto;
 }
 
 /* Graph Area */
@@ -77,12 +91,16 @@ label:has(input[type="file"]):hover {
 }
 
 .plot.red {
-  background: red;
+  background: blue;
 }
 
 .plot.blue {
-  background: blue;
-  border-radius: 3px;
+  width: 0;
+  height: 0;
+  background: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid red;
 }
 
 .column .description {
