@@ -158,6 +158,7 @@ const View = (props: {
             onMouseEnter={(e) => {
               setHoveredHour(hour);
             }}
+            key={hour}
           >
             <span
               className="plot red"
