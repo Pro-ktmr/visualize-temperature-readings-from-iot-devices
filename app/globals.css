@@ -47,8 +47,7 @@ label:has(input[type="file"]):hover {
   width: 100%;
   padding: 4rem;
   height: calc(100% - 400px);
-  filter: saturate(50%);
-  fill: red;
+  filter: saturate(80%);
 }
 
 .house {
@@ -90,17 +89,17 @@ label:has(input[type="file"]):hover {
   background: black;
 }
 
-.plot.red {
-  background: blue;
+.plot.out {
+  background: red;
 }
 
-.plot.blue {
+.plot.in {
   width: 0;
   height: 0;
   background: none;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 8px solid red;
+  border-bottom: 8px solid blue;
 }
 
 .column .description {

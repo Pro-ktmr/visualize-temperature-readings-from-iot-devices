@@ -161,13 +161,13 @@ const View = (props: {
             key={hour}
           >
             <span
-              className="plot red"
+              className="plot in"
               style={{
                 top: calcY(props.averageIn[hour]) + "px",
               }}
             ></span>
             <span
-              className="plot blue"
+              className="plot out"
               style={{
                 top: calcY(props.averageOut[hour]) + "px",
               }}
@@ -176,12 +176,12 @@ const View = (props: {
               <strong>{hour}:**:**</strong>
               <table>
                 <tr>
-                  <th>▲ In</th>
-                  <td>{props.averageIn[hour].toFixed(2)}</td>
-                </tr>
-                <tr>
                   <th>■ Out</th>
                   <td>{props.averageOut[hour].toFixed(2)}</td>
+                </tr>
+                <tr>
+                  <th>▲ In</th>
+                  <td>{props.averageIn[hour].toFixed(2)}</td>
                 </tr>
               </table>
             </div>
